@@ -1,0 +1,196 @@
+const button = document.querySelector("#speak")
+const ding = new Audio("audio/ding.mp3")
+
+let speechRecognition = new webkitSpeechRecognition()
+
+speechRecognition.continuous = false;
+
+speechRecognition.interimResults = false;
+        
+speechRecognition.lang = "en"
+
+
+
+
+button.addEventListener("click",()=>{
+
+    speechRecognition.start()
+    button.innerText = 'Listening...'
+    button.classList.add('speak-active')
+    
+    // The ding sound works here but not at the end result
+    // ding.play()
+    
+
+})
+
+speechRecognition.onstart = () => {
+
+    console.log("Listening...")
+
+
+
+}
+
+speechRecognition.onsoundstart = (e) => {
+        
+    console.log("We hear you!")
+
+}
+
+speechRecognition.onsoundend = () => {
+
+    console.log("We stopped hearing you!")
+
+    
+
+    button.innerText = 'Talk'
+    button.classList.toggle('speak-active')
+
+    
+    speechRecognition.stop()
+
+    
+}
+
+
+
+// Promise Based Code
+
+speechRecognition.addEventListener('result',(e)=>{
+
+    const speak = async()=>{
+
+        let resultsArray = Array.from(e.results)
+        let finalResult = resultsArray.pop()
+        let parsedTranscript = finalResult[0].transcript.trimStart().replace('.',"")
+        console.log(parsedTranscript)
+
+        let colors = ['blue','red','green','orange','purple','pink']
+
+
+        for (let i of colors){
+
+            if (parsedTranscript.toLowerCase() === i){
+
+                document.body.style.backgroundColor = i
+
+                console.log('Resolved')
+
+
+            }
+
+
+
+        }
+
+
+    }
+
+
+    const playSound = async()=>{
+
+        ding.play()
+    }
+
+    const stopListening = async()=>{
+
+        speechRecognition.start()
+        speechRecognition.stop()
+    }
+
+    const revertButton = async()=>{
+
+        button.classList.toggle('speak-active')
+        button.innerText = 'Talk'
+    }
+
+
+
+    speak()
+
+    .then(()=>{
+
+        playSound()
+
+        .then(()=>{
+
+            stopListening()
+
+            .then(()=>{
+
+                revertButton()
+            })
+        })
+
+    })
+
+    
+
+
+})
+    
+
+    
+    
+    
+
+
+    
+
+
+// speechRecognition.addEventListener('result',(e)=>{
+
+//     // console.log(e)
+//     // Creates an Array from the results object to iterate through
+//     let resultsArray = Array.from(e.results)
+
+//     // The last thing we say in the mic is the last element in the array, so using pop() gets the latest element
+//     let finalResult = resultsArray.pop()
+    
+
+//     // This line removes the whitespace from the beginning of the transcript. The replace method removes the punctuation that is automatically added by Microsoft edge
+//     let parsedTranscript = finalResult[0].transcript.trimStart().replace('.',"")
+//     console.log(parsedTranscript)
+
+
+//     let colors = ['blue','red','green','orange','purple','pink']
+
+//     for (let i of colors){
+
+//         if (parsedTranscript.toLowerCase() === i){
+
+//             setTimeout(()=>{
+
+//                 ding.autoplay = true;
+//                 ding.play();
+
+//             },950)
+
+//             document.body.style.backgroundColor = i
+
+//             // This seems to work on the iphone to stop recording
+//             speechRecognition.start()
+//             speechRecognition.stop()
+
+//             // Need to toggle and change the button manually here for iphone
+//             button.classList.toggle('speak-active')
+//             button.innerText = 'Talk'
+
+            
+            
+            
+            
+//         }
+
+//         ding.play();
+//     }
+    
+
+   
+
+
+
+
+
+// })
