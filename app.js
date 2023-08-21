@@ -111,9 +111,8 @@ speechRecognition.addEventListener('result',(e)=>{
 
     .then(()=>{
 
-        ding.autoplay = true;
+        
         playSound()
-        ding.play()
 
         .then(()=>{
 
