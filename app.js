@@ -111,7 +111,11 @@ speechRecognition.addEventListener('result',(e)=>{
 
     .then(()=>{
 
-        playSound()
+        setTimeout(()=>{
+
+            playSound()
+            
+        },950)
 
         .then(()=>{
 
