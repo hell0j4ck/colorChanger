@@ -13,26 +13,6 @@ speechRecognition.lang = "en"
 
 
 
-// TESTING HOWLER WITH iOS
-
-// Howler.autoUnlock = true;
-
-// var sound = new Howl({
-
-//     src: ['audio/ding.mp3'],
-
-//     onplayerror: function() {
-//         sound.once('unlock', function() {
-//           sound.play();
-//         });
-//       }
-
-// })
-
-// sound.play()
-
-// ------------------------------------------------
-
 
 
 
