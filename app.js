@@ -151,11 +151,7 @@ speechRecognition.addEventListener('result',(e)=>{
         console.log("Appears there was an error: "+e)
     })
 
-    speechRecognition.onsoundend = ()=>{
-
-        sound.play()
-        revertButton()
-    }
+    
     
 
 
