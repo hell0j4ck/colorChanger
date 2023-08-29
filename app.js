@@ -1,5 +1,6 @@
 const button = document.querySelector("#speak")
 const ding = new Audio("audio/ding.mp3")
+ding.autoplay=true
 
 let speechRecognition = new webkitSpeechRecognition()
 
@@ -13,21 +14,21 @@ speechRecognition.lang = "en"
 
 // TESTING HOWLER WITH iOS
 
-Howler.autoUnlock = true;
+// Howler.autoUnlock = true;
 
-var sound = new Howl({
+// var sound = new Howl({
 
-    src: ['audio/ding.mp3'],
+//     src: ['audio/ding.mp3'],
 
-    onplayerror: function() {
-        sound.once('unlock', function() {
-          sound.play();
-        });
-      }
+//     onplayerror: function() {
+//         sound.once('unlock', function() {
+//           sound.play();
+//         });
+//       }
 
-})
+// })
 
-sound.play()
+// sound.play()
 
 // ------------------------------------------------
 
