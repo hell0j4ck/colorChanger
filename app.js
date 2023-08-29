@@ -13,7 +13,7 @@ speechRecognition.lang = "en"
 
 
 button.addEventListener("click",()=>{
-
+    
     speechRecognition.start()
     button.innerText = 'Listening...'
     button.classList.add('speak-active')
@@ -54,6 +54,22 @@ speechRecognition.onsoundend = () => {
 }
 
 
+const playSound = async()=>{
+
+    ding.play()
+}
+
+const stopListening = async()=>{
+
+    speechRecognition.start()
+    speechRecognition.stop()
+}
+
+const revertButton = async()=>{
+
+    button.classList.toggle('speak-active')
+    button.innerText = 'Talk'
+}
 
 // Promise Based Code
 
@@ -90,25 +106,6 @@ speechRecognition.addEventListener('result',(e)=>{
 
 
     }
-
-
-    const playSound = async()=>{
-
-        ding.play()
-    }
-
-    const stopListening = async()=>{
-
-        speechRecognition.start()
-        speechRecognition.stop()
-    }
-
-    const revertButton = async()=>{
-
-        button.classList.toggle('speak-active')
-        button.innerText = 'Talk'
-    }
-
 
 
     speak()
