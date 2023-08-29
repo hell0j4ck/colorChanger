@@ -127,7 +127,6 @@ speechRecognition.addEventListener('result',(e)=>{
 
 
     speak()
-    
 
     .then(()=>{
 
@@ -148,6 +147,11 @@ speechRecognition.addEventListener('result',(e)=>{
         console.log("Appears there was an error: "+e)
     })
 
+    speechRecognition.onsoundend = ()=>{
+
+        playSound()
+        revertButton()
+    }
     
 
 
