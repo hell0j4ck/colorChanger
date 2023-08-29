@@ -82,25 +82,43 @@ speechRecognition.addEventListener('result',(e)=>{
         let parsedTranscript = finalResult[0].transcript.trimStart().replace('.',"")
         console.log(parsedTranscript)
 
-        let colors = ['blue','red','green','orange','purple','pink']
+        let colors = ['blue','red','green','orange','purple','pink', 'yellow']
+
+        let finalWord = parsedTranscript.toLowerCase()
 
 
-        for (let i of colors){
+        if (colors.includes(finalWord)){
 
-            
-            if (parsedTranscript.toLowerCase() === i){
+            document.body.style.backgroundColor = finalWord
 
-                document.body.style.backgroundColor = i
+            console.log('Resolved')
 
-                console.log('Resolved')
+        }else{
 
-
-            }
-            
-
-
-
+            throw('Color not found!')
         }
+
+        // for (let i of colors){
+
+            
+        //     if (parsedTranscript.toLowerCase() === i){
+
+        //         document.body.style.backgroundColor = i
+
+        //         console.log('Resolved')
+
+        //         break;
+
+
+        //     }else{
+
+        //         throw('Error!')
+        //     }
+            
+
+
+
+        // }
 
         
 
@@ -109,6 +127,7 @@ speechRecognition.addEventListener('result',(e)=>{
 
 
     speak()
+    
 
     .then(()=>{
 
