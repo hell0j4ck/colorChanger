@@ -71,6 +71,7 @@ speechRecognition.addEventListener('result',(e)=>{
 
         for (let i of colors){
 
+            
             if (parsedTranscript.toLowerCase() === i){
 
                 document.body.style.backgroundColor = i
@@ -79,10 +80,13 @@ speechRecognition.addEventListener('result',(e)=>{
 
 
             }
+            
 
 
 
         }
+
+        
 
 
     }
@@ -111,7 +115,6 @@ speechRecognition.addEventListener('result',(e)=>{
 
     .then(()=>{
 
-        
         playSound()
 
         .then(()=>{
@@ -124,6 +127,9 @@ speechRecognition.addEventListener('result',(e)=>{
             })
         })
 
+    }).catch((e)=>{
+
+        console.log("Appears there was an error: "+e)
     })
 
     
@@ -139,7 +145,7 @@ speechRecognition.addEventListener('result',(e)=>{
 
     
 
-
+// 
 // speechRecognition.addEventListener('result',(e)=>{
 
 //     // console.log(e)
