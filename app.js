@@ -11,6 +11,20 @@ speechRecognition.lang = "en"
 
 
 
+// TESTING HOWLER WITH iOS
+var sound = new Howl({
+
+    src: ['audio/ding.mp3']
+
+})
+
+sound.play()
+
+// ------------------------------------------------
+
+
+
+
 
 button.addEventListener("click",()=>{
     
@@ -149,7 +163,7 @@ speechRecognition.addEventListener('result',(e)=>{
 
     speechRecognition.onsoundend = ()=>{
 
-        playSound()
+        sound.play()
         revertButton()
     }
     
