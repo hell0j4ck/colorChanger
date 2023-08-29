@@ -1,7 +1,19 @@
 const button = document.querySelector("#speak")
 const ding = new Audio("audio/ding.mp3")
-ding.autoplay=true
-ding.src = "data:audio/mpeg;base64,SUQzBAAAAAABEVRYWFgAAAAtAAADY29tbWVudABCaWdTb3VuZEJhbmsuY29tIC8gTGFTb25vdGhlcXVlLm9yZwBURU5DAAAAHQAAA1N3aXRjaCBQbHVzIMKpIE5DSCBTb2Z0d2FyZQBUSVQyAAAABgAAAzIyMzUAVFNTRQAAAA8AAANMYXZmNTcuODMuMTAwAAAAAAAAAAAAAAD/80DEAAAAA0gAAAAATEFNRTMuMTAwVVVVVVVVVVVVVUxBTUUzLjEwMFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVf/zQsRbAAADSAAAAABVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVf/zQMSkAAADSAAAAABVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV";
+
+function unlockAudioContext(audioCtx) {
+
+  if (audioCtx.state !== 'suspended') return;
+  const b = document.body;
+  const events = ['touchstart','touchend', 'mousedown','keydown'];
+  events.forEach(e => b.addEventListener(e, unlock, false));
+  function unlock() { audioCtx.resume().then(clean); }
+  function clean() { events.forEach(e => b.removeEventListener(e, unlock)); }
+}
+
+unlockAudioContext(ding)
+
+ding.play()
 
 let speechRecognition = new webkitSpeechRecognition()
 
@@ -80,7 +92,7 @@ speechRecognition.onsoundend = () => {
 
 
 const playSound = async()=>{
-    ding.src = "audio/ding.mp3"
+    
     ding.play()
 }
 
