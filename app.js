@@ -1,6 +1,10 @@
 const button = document.querySelector("#speak")
 const ding = new Audio("audio/ding.mp3")
 
+ding.autoplay = true
+
+ding.play()
+
 
 let speechRecognition = new webkitSpeechRecognition()
 
